@@ -1,0 +1,1 @@
+export default function Navbar() { return <header className="navbar"><div className="nav-logo">●</div><div className="search-pill"><span>⌕</span><span>What do you want to play?</span><button>▣</button></div><div className="nav-actions"><button className="avatar-nav">V</button><button>♧</button><button>♙</button></div></header> }
