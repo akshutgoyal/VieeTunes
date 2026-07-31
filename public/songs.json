@@ -1,0 +1,5 @@
+[
+  {"id":1,"title":"Barbaad","artist":"The Local Train","album":"Barbaad","cover":"/Spotify-Clone/covers/one.svg","audio":"/Spotify-Clone/audio/Barbaad.mp3","duration":101},
+  {"id":2,"title":"Give Me Some Sunshine","artist":"Suraj Jagan, Sharman Joshi","album":"3 Idiots","cover":"/Spotify-Clone/covers/two.svg","audio":"/Spotify-Clone/audio/Give%20me%20some%20sunshine.mp3","duration":125},
+  {"id":3,"title":"Heather","artist":"Aurev Lior","album":"Heather","cover":"/Spotify-Clone/covers/three.svg","audio":"/Spotify-Clone/audio/Heather.mp3","duration":128}
+]
