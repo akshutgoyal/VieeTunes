@@ -25,3 +25,5 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .mini-window-shell .mini-player{display:flex;flex-direction:column;height:100%;min-height:100vh}.mini-window-shell .mini-art{height:auto;min-height:0;flex:1}.mini-window-shell .mini-details{height:auto;min-height:70px;flex:none}
 .mini-window-shell,.mini-window-shell *{max-width:none}.mini-window-shell{width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important}.mini-window-shell .mini-player{width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important}.mini-window-shell .mini-art{width:100%!important}.mini-window-shell .mini-details{width:100%!important}
 .volume-icon{display:block;width:18px;height:18px;color:#b3b3b3}.volume-button:hover .volume-icon{color:#fff}
+.icon-svg{display:block;flex:none}.action:hover .icon-svg,.player-tools button:hover .icon-svg{stroke-width:2.2}
+.search-pill>.icon-svg{color:#b3b3b3;flex:none}.search-pill button{display:grid;place-items:center}.search-pill button .icon-svg{color:#a7a7a7}
