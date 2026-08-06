@@ -1,1 +1,6 @@
-export default function PlaylistHeader({ tracks }) { const total = tracks.reduce((a, t) => a + Number(t.duration || 0), 0); const hours = Math.floor(total / 3600); const mins = Math.floor((total % 3600) / 60); return <header className="playlist-header"><img src="/Spotify-Clone/covers/playlist.svg" alt="Playlist cover"/><div><p className="eyebrow">Public Playlist</p><h1>Late night frequencies</h1><p className="description">A collection of warm grooves, soft synths, and after-hours energy.</p><p className="meta"><span className="avatar">V</span><strong>VieeTunes</strong> · 1 save · {tracks.length} songs, {hours ? `${hours} hr ` : ''}{mins} min</p></div></header> }
+export default function PlaylistHeader({ tracks }) {
+  const total = tracks.reduce((a, t) => a + Number(t.duration || 0), 0)
+  const hours = Math.floor(total / 3600)
+  const mins = Math.floor((total % 3600) / 60)
+  return <header className="playlist-header"><img src="/Spotify-Clone/covers/playlist.svg" alt="Playlist cover"/><div><p className="eyebrow">Public Playlist</p><h1>Late night frequencies</h1><p className="description">A collection of warm grooves, soft synths, and after-hours energy.</p><p className="meta"><span className="avatar">V</span><strong>VieeTunes</strong> · 1 save · {tracks.length} songs, {hours ? `${hours} hr ` : ''}{mins} min</p></div></header>
+}

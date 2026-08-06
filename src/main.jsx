@@ -5,6 +5,8 @@ import './styles.css'
 import './polish.css'
 import './main-polish.css'
 import './icon-polish.css'
+import './motion.css'
+import './waveform.css'
 import './controls.css'
 
 createRoot(document.getElementById('root')).render(<App />)
