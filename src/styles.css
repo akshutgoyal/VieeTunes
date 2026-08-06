@@ -1,4 +1,22 @@
 @import 'tailwindcss';
+.skeleton-list{padding:0 28px}.skeleton-row{height:56px;display:grid;grid-template-columns:34px 2fr 1fr;gap:18px;align-items:center}.skeleton-row i{display:block;height:12px;border-radius:4px;background:linear-gradient(90deg,#242424,#3a3a3a,#242424);background-size:200% 100%;animation:skeleton 1.2s infinite}.skeleton-row i:first-child{width:20px}.skeleton-row i:nth-child(2){height:38px}.empty-state{padding:56px 28px;color:#a7a7a7;text-align:center}@keyframes skeleton{to{background-position:-200% 0}}
+/* Pixel-fidelity depth pass. The primary accent remains #14B8A6. */
+:root{--accent:#14b8a6;--secondary:#a7a7a7;--surface:#121212;--black:#000}
+.navbar{box-shadow:0 1px 0 rgba(0,0,0,.3)}
+.left-rail,.now-panel{background:#000}
+.player{border-top:1px solid rgba(255,255,255,.1);box-shadow:0 -8px 24px rgba(0,0,0,.4)}
+.top-glow{height:390px;background:radial-gradient(ellipse 62% 65% at 18% 0%,rgba(20,184,166,.28) 0%,rgba(12,100,94,.16) 35%,transparent 75%),linear-gradient(180deg,rgba(50,45,47,.78) 0%,rgba(28,25,26,.48) 42%,transparent 100%)}
+.top-glow:after{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+.playlist-header h1{text-shadow:0 2px 4px rgba(0,0,0,.3)}
+.track-row{transition:background-color 150ms ease,box-shadow 150ms ease}.track-row:hover{background:#2a2a2a;box-shadow:inset 2px 0 0 rgba(255,255,255,.08)}.track-row.current{background:rgba(255,255,255,.05)}
+.track-info img{box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}.equalizer{filter:drop-shadow(0 0 4px rgba(20,184,166,.4))}
+.big-play{background:var(--accent)!important;box-shadow:0 8px 16px rgba(20,184,166,.3);transition:transform 180ms ease,box-shadow 180ms ease}.big-play:hover{transform:scale(1.05);box-shadow:0 10px 22px rgba(20,184,166,.45)}
+.play-pause{box-shadow:0 2px 8px rgba(0,0,0,.3);transition:transform 150ms ease}.play-pause:active{transform:scale(1.08)}
+.action,.control-buttons button,.player-tools button,.like,.nav-actions button{transition:color 150ms ease,transform 150ms ease}.action:hover,.control-buttons button:hover,.player-tools button:hover,.like:hover,.nav-actions button:hover{color:#fff;transform:scale(1.08)}.action.selected,.control-buttons .selected{color:var(--accent)!important}
+.progress{background:rgba(255,255,255,.1)!important;filter:drop-shadow(0 0 4px rgba(20,184,166,.18))}.progress::-webkit-slider-thumb{opacity:0;background:#fff!important;width:12px;height:12px;box-shadow:0 2px 4px rgba(0,0,0,.4);transition:opacity 100ms ease,transform 100ms ease}.progress:hover::-webkit-slider-thumb,.progress:active::-webkit-slider-thumb{opacity:1;transform:scale(1.05)}.progress::-moz-range-thumb{opacity:0;background:#fff;border:0;width:12px;height:12px;box-shadow:0 2px 4px rgba(0,0,0,.4);transition:opacity 100ms ease}.progress:hover::-moz-range-thumb,.progress:active::-moz-range-thumb{opacity:1}
+.about-card,.credit-card{transition:transform 180ms ease,box-shadow 180ms ease}.about-card:hover,.credit-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.5)}.about-card:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 38%,rgba(0,0,0,.8) 100%);pointer-events:none}.about-card div{z-index:1}.about-artist .about-card button{background:transparent;border-color:rgba(255,255,255,.3);transition:background 150ms ease,color 150ms ease}.about-artist .about-card button:hover{background:#fff;color:#000}
+.track-info strong,.track-info small{transition:color 150ms ease}.track-row:hover .track-info strong,.track-row:hover .track-info small{color:#fff}
+main,.now-panel{mask-image:linear-gradient(to bottom,transparent 0,#000 20px,#000 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 20px,#000 100%)}
 /* Control polish: keep the turquoise accent consistent and center glyphs inside circular buttons. */
 .big-play{display:flex!important;align-items:center;justify-content:center;line-height:1;padding:0!important;text-indent:1px}
 .play-pause{display:flex;align-items:center;justify-content:center;line-height:1;padding:0!important;text-indent:1px}

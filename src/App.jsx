@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAudioPlayer } from './hooks/useAudioPlayer'
 import { usePlayerStore } from './store/playerStore'
 import LeftSidebar from './components/LeftSidebar'
@@ -8,5 +8,23 @@ import PlaylistHeader from './components/PlaylistHeader'
 import TrackList from './components/TrackList'
 import PlayerBar from './components/PlayerBar'
 import Navbar from './components/Navbar'
+import QueuePanel from './components/QueuePanel'
+import MiniPlayer from './components/MiniPlayer'
+import { openMiniPlayer } from './utils/openMiniPlayer'
 
-export default function App() { useAudioPlayer(); const tracks = usePlayerStore((s) => s.tracks); const setTracks = usePlayerStore((s) => s.setTracks); useEffect(() => { fetch(`${import.meta.env.BASE_URL}songs.json`).then((r) => r.json()).then(setTracks); }, [setTracks]); return <div className="app-shell"><Navbar/><LeftSidebar/><main><div className="top-glow"/><PlaylistHeader tracks={tracks}/><ActionBar/><TrackList tracks={tracks}/></main><NowPlayingSidebar/><PlayerBar/></div> }
+export default function App() {
+  useAudioPlayer()
+  const tracks = usePlayerStore((s) => s.tracks)
+  const setTracks = usePlayerStore((s) => s.setTracks)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  const [nowOpen, setNowOpen] = useState(false)
+  const [queueOpen, setQueueOpen] = useState(false)
+  const isMiniWindow = new URLSearchParams(window.location.search).has('mini')
+
+  useEffect(() => { fetch(`${import.meta.env.BASE_URL}songs.json`).then((r) => { if (!r.ok) throw new Error('songs.json failed'); return r.json() }).then((songs) => { setTracks(Array.isArray(songs) ? songs : []); setLoading(false) }).catch(() => { setError('No tracks found'); setLoading(false) }) }, [setTracks])
+  const toggleQueue = () => setQueueOpen((open) => !open)
+  const showNowPlaying = () => { setQueueOpen(false); setNowOpen(true) }
+  if (isMiniWindow) return <div className="mini-window-shell">{loading ? <p>Loading player…</p> : error ? <p>{error}</p> : <MiniPlayer onClose={() => window.close()} />}</div>
+  return <div className="app-shell"><Navbar/><LeftSidebar/><main><div className="top-glow"/><PlaylistHeader tracks={tracks}/>{loading ? <div className="skeleton-list" aria-label="Loading tracks">{[1,2,3,4].map((i) => <div className="skeleton-row" key={i}><i/><i/><i/></div>)}</div> : error || !tracks.length ? <div className="empty-state">{error || 'No tracks found'}</div> : <><ActionBar/><TrackList tracks={tracks}/></>}</main>{queueOpen ? <QueuePanel open onClose={() => setQueueOpen(false)}/> : <NowPlayingSidebar open={nowOpen} onToggleQueue={toggleQueue}/>}<PlayerBar onToggleNow={showNowPlaying} onToggleQueue={toggleQueue} queueOpen={queueOpen} onToggleMini={openMiniPlayer}/></div>
+}
