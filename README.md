@@ -52,7 +52,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is configured for the GitHub repository `/Spotify-Clone/` in [`vite.config.js`](./vite.config.js). Update it if the repository name changes.
+The Vite base path is configured for the GitHub repository `/VieeTunes/` in [`vite.config.js`](./vite.config.js). Update it if the repository name changes.
 
 ## Deployment
 
