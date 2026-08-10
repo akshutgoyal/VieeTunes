@@ -52,7 +52,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is configured for the GitHub repository `/VieeTunes/` in [`vite.config.js`](./vite.config.js). Update it if the repository name changes.
+The Vite base path uses `/` during local development and `/VieeTunes/` for production GitHub Pages builds. Update the production path in [`vite.config.js`](./vite.config.js) if the repository name changes.
 
 ## Deployment
 
