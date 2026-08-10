@@ -19,8 +19,8 @@ export const usePlayerStore = create((set, get) => ({
   toggleShuffle: () => set((state) => ({ isShuffle: !state.isShuffle })),
   // The visible replay control is intentionally a direct repeat-current toggle.
   toggleRepeat: () => set((state) => ({ repeat: state.repeat === 'one' ? 'off' : 'one' })),
-  next: () => { const { tracks, queue, repeat } = get(); if (!tracks.length) return; if (repeat === 'one') return set({ currentTime: 0, isPlaying: true }); if (queue.length) { const [nextTrack, ...remaining] = queue; return set({ currentTrack: nextTrack, queue: remaining, currentTime: 0, isPlaying: true }); } if (repeat === 'all') return set({ currentTrack: tracks[0], queue: tracks.slice(1), currentTime: 0, isPlaying: true }); set({ isPlaying: false, currentTime: 0 }); },
-  previous: () => { const { tracks, currentTrack, currentTime } = get(); if (currentTime > 3) return set({ currentTime: 0, isPlaying: true }); const index = tracks.findIndex((t) => t.id === currentTrack?.id); set({ currentTrack: tracks[(index - 1 + tracks.length) % tracks.length], queue: tracks.slice(0, Math.max(0, index - 1)).concat(tracks.slice(index + 1)), currentTime: 0, isPlaying: true }); }
+  next: () => { const { tracks, queue, repeat } = get(); if (!tracks.length) return; if (repeat === 'one') return set({ currentTime: 0, isPlaying: true }); if (queue.length) { const [nextTrack, ...remaining] = queue; return set({ currentTrack: nextTrack, queue: remaining, currentTime: 0, isPlaying: true }); } return set({ currentTrack: tracks[0], queue: tracks.slice(1), currentTime: 0, isPlaying: true }); },
+  previous: () => { const { tracks, currentTrack, currentTime } = get(); if (!tracks.length) return; if (currentTime > 3) return set({ currentTime: 0, isPlaying: true }); const index = tracks.findIndex((t) => t.id === currentTrack?.id); const previousIndex = (index - 1 + tracks.length) % tracks.length; set({ currentTrack: tracks[previousIndex], queue: tracks.slice(previousIndex + 1), currentTime: 0, isPlaying: true }); }
 }))
 
 usePlayerStore.subscribe((state) => persist(state))
