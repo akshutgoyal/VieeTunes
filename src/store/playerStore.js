@@ -23,4 +23,7 @@ export const usePlayerStore = create((set, get) => ({
   previous: () => { const { tracks, currentTrack, currentTime } = get(); if (!tracks.length) return; if (currentTime > 3) return set({ currentTime: 0, isPlaying: true }); const index = tracks.findIndex((t) => t.id === currentTrack?.id); const previousIndex = (index - 1 + tracks.length) % tracks.length; set({ currentTrack: tracks[previousIndex], queue: tracks.slice(previousIndex + 1), currentTime: 0, isPlaying: true }); }
 }))
 
-usePlayerStore.subscribe((state) => persist(state))
+let syncingFromPeer = false
+const playerChannel = typeof window !== 'undefined' && 'BroadcastChannel' in window ? new BroadcastChannel('vieetunes-player-sync') : null
+if (playerChannel) playerChannel.onmessage = ({ data }) => { syncingFromPeer = true; usePlayerStore.setState(data); syncingFromPeer = false }
+usePlayerStore.subscribe((state) => { persist(state); if (!syncingFromPeer && playerChannel) playerChannel.postMessage({ currentTrack: state.currentTrack, queue: state.queue, isPlaying: state.isPlaying, currentTime: state.currentTime, duration: state.duration, volume: state.volume, isShuffle: state.isShuffle, repeat: state.repeat }) })

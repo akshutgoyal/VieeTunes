@@ -7,6 +7,9 @@ import './main-polish.css'
 import './icon-polish.css'
 import './motion.css'
 import './waveform.css'
+import './queue-polish.css'
+import './layout.css'
+import './pip-polish.css'
 import './controls.css'
 
 createRoot(document.getElementById('root')).render(<App />)
