@@ -22,7 +22,7 @@ export default function App() {
   const [queueOpen, setQueueOpen] = useState(false)
   const isMiniWindow = new URLSearchParams(window.location.search).has('mini')
 
-  useEffect(() => { fetch(`${import.meta.env.BASE_URL}songs.json`).then((r) => { if (!r.ok) throw new Error('songs.json failed'); return r.json() }).then((songs) => { setTracks(Array.isArray(songs) ? songs : []); setLoading(false) }).catch(() => { setError('No tracks found'); setLoading(false) }) }, [setTracks])
+  useEffect(() => { fetch(`${import.meta.env.BASE_URL}songs.json`).then((r) => { if (!r.ok) throw new Error('songs.json failed'); return r.json() }).then((songs) => { const resolveAsset = (path) => `${import.meta.env.BASE_URL}${String(path).replace(/^\/+/, '')}`; const normalized = Array.isArray(songs) ? songs.map((song) => ({ ...song, cover: resolveAsset(song.cover), audio: resolveAsset(song.audio) })) : []; setTracks(normalized); setLoading(false) }).catch(() => { setError('No tracks found'); setLoading(false) }) }, [setTracks])
   const toggleQueue = () => { setQueueOpen((open) => !open); setNowOpen(false) }
   const showNowPlaying = () => { setQueueOpen(false); setNowOpen((open) => !open) }
   if (isMiniWindow) return <div className="mini-window-shell">{loading ? <p>Loading player…</p> : error ? <p>{error}</p> : <MiniPlayer onClose={() => window.close()} />}</div>

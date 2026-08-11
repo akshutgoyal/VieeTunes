@@ -3,6 +3,7 @@ import { usePlayerStore } from '../store/playerStore'
 import ProgressBar from './ProgressBar'
 import VolumeIcon from './VolumeIcon'
 import Icon from './Icons'
+import { assetUrl } from '../utils/assetUrl'
 const fmt = (n) => `${Math.floor(n / 60)}:${String(Math.floor(n % 60)).padStart(2, '0')}`
 
 export default function PlayerBar({ onToggleNow, onToggleQueue, nowOpen, queueOpen, onToggleMini }) {
