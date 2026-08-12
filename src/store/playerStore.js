@@ -5,7 +5,7 @@ const persist = (state) => { try { localStorage.setItem('vieetunes-player', JSON
 
 export const usePlayerStore = create((set, get) => ({
   tracks: [], queue: [], currentTrack: null, isPlaying: false, currentTime: 0, duration: 0,
-  volume: typeof saved.volume === 'number' ? saved.volume : 0.75, isShuffle: Boolean(saved.isShuffle), repeat: saved.repeat === 'one' ? 'one' : 'off',
+  volume: typeof saved.volume === 'number' ? saved.volume : 0.5, isShuffle: Boolean(saved.isShuffle), repeat: saved.repeat === 'one' ? 'one' : 'off',
   setTracks: (tracks) => { const currentTrack = tracks.find((track) => track.id === saved.trackId) ?? tracks[0] ?? null; set({ tracks, currentTrack, queue: currentTrack ? tracks.slice(tracks.indexOf(currentTrack) + 1) : [], duration: currentTrack?.duration ?? 0, isPlaying: false }); },
   playTrack: (id) => { const { tracks } = get(); const index = tracks.findIndex((track) => track.id === id); set({ currentTrack: tracks[index] ?? null, queue: index >= 0 ? tracks.slice(index + 1) : [], isPlaying: true, currentTime: 0 }); },
   startPlaylist: () => { const { tracks } = get(); if (!tracks.length) return; set({ currentTrack: tracks[0], queue: tracks.slice(1), isShuffle: false, isPlaying: true, currentTime: 0 }); },
