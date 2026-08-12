@@ -1,7 +1,7 @@
 # VieeTunes
 
 A static Spotify-inspired music player built with React, Vite, Tailwind CSS, and Zustand. VieeTunes loads local song metadata and audio files from `public/`, with no backend or external music API.
- 
+  
 ## Features
 
 - Spotify-style dark three-column layout
