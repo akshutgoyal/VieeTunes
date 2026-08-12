@@ -52,7 +52,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is `/`, which supports local development and the custom GitHub Pages domain `https://akshut.cyou/`.
+The Vite production base path is `/VieeTunes/`, which supports the GitHub Pages project URL `https://akshutgoyal.github.io/VieeTunes/`. Local Vite development still serves from `/`.
 
 ## Deployment
 
